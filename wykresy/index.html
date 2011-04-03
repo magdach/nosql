@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <title>Books</title>
+  
+    <script type="text/javascript" src="js/protovis-r3.2.js"></script>
+    <script type="text/javascript" src="js/data_numbers.js"></script>
+    
+    <style type="text/css">
+        body {
+          background: rgb(220, 220, 210);
+          width: 900px;
+        }
+
+    </style>
+  </head>
+  <body>
+      <div id="tabs">
+	
+	<h1>ISBN numbers</h1>
+	<div id="tabs-1">
+        <script type="text/javascript+protovis">
+            /* Basic dimensions. */
+            var width = 900, height = 350;
+
+            var barWidth = width/isbn_by_numbers.length;
+            var gap = 4;
+
+            var by_numbers = new pv.Panel().width(width).height(height+5);
+            
+            by_numbers.add(pv.Bar)
+                .data(isbn_by_numbers)
+                .bottom(0)
+                .width(barWidth-gap)
+                .height(function(d) d.value / 10)
+                .left(function() this.index * barWidth + 30)
+				.fillStyle(function (d) d.value > 1850 ? "orange" : "pink" )
+                .anchor("bottom").add(pv.Label)
+                    .text(function(d) d.key)
+                    .textBaseline("middle")
+                    .textStyle("#000")
+                    .textAngle(-Math.PI / 2)
+                    .textAlign("left")
+                    
+            var magnitude = pv.Scale.linear(0, max/10).range(0, height);
+            
+            by_numbers.add(pv.Rule).data(magnitude.ticks())
+                .bottom(function(d) d)
+                .left(30)
+                .right(6)
+                .strokeStyle(function(d) (d > 0) ? "white" : "black")
+              .add(pv.Label)
+                .textAlign("right")
+                .textBaseline("top")
+                .text(function(d) (d).toFixed(1) * 10);
+            
+            
+            by_numbers.render();
+
+        </script>
+	</div>
+	
+	
+    </div>
+
+
+
+  </body>
+</html>

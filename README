@@ -1,4 +1,3 @@
-
 Skrypt: import_couch.rb, napisany w Ruby. Skrypt uruchamia sie poleceniem: ruby import_couch.rb. 
 Skrypt pobiera dane ze strony isbndb.com baze ksiazek. Na stronie https://isbndb.com/docs/api/ jest zamieszczony opis jak korzystac z API strony. Kazdy musi miec wygenerowany oddzielny klucz podawany w zapytaniu. Kazde konto ma dzienny limit pobran. W zapytaniu jako warotsc value1 podajemy interesujcy nas temat.
 

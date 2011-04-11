@@ -4,6 +4,8 @@
   
     <script type="text/javascript" src="js/protovis-r3.2.js"></script>
     <script type="text/javascript" src="js/data_numbers.js"></script>
+	<script type="text/javascript" src="js/data_titlelong.js"></script>
+	
     
     <style type="text/css">
         body {
@@ -14,10 +16,10 @@
     </style>
   </head>
   <body>
-      <div id="tabs">
+    <div id="tabs">
 	
 	<h1>ISBN numbers</h1>
-	<div id="tabs-1">
+	<div id="isbn">
         <script type="text/javascript+protovis">
             /* Basic dimensions. */
             var width = 900, height = 350;
@@ -58,11 +60,40 @@
 
         </script>
 	</div>
-	
+		
+	<h1>Titles</h1>
+	<div id="tabs-2">
+        <script type="text/javascript+protovis">
+        
+            var data = books_titles;
+            var w = 400,
+            h = 400,
+            r = w / 2,
+            sum = numbers_of_books;
+
+            var vis = new pv.Panel()
+                .width(w)
+                .height(h);
+
+            vis.add(pv.Wedge)
+                .def("o", -1)
+                .data(data)
+                .bottom(w / 2)
+                .left(w / 2)
+                .innerRadius(r - 110)
+                .outerRadius(r)
+                .angle(function(d) d.value / sum * 2 * Math.PI)
+                .left(function() r + Math.cos(this.startAngle() + this.angle() / 2) * ((this.o() == this.index) ? 10 : 0))
+                .bottom(function() r - Math.sin(this.startAngle() + this.angle() / 2) * ((this.o() == this.index) ? 10 : 0))
+                .event("mouseover", function() this.o(this.index))
+              .anchor("center").add(pv.Label)
+                .textAngle(0)
+                .text(function(d) d.key);
+
+            vis.render();
+        </script>
+</div>
 	
     </div>
-
-
-
   </body>
 </html>

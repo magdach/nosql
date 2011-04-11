@@ -1,2 +1,13 @@
-Skrypt napisany w Ruby. Skrypt uruchamia sie poleceniem: ruby import_couch.rb. 
+
+Skrypt: import_couch.rb, napisany w Ruby. Skrypt uruchamia sie poleceniem: ruby import_couch.rb. 
 Skrypt pobiera dane ze strony isbndb.com baze ksiazek. Na stronie https://isbndb.com/docs/api/ jest zamieszczony opis jak korzystac z API strony. Kazdy musi miec wygenerowany oddzielny klucz podawany w zapytaniu. Kazde konto ma dzienny limit pobran. W zapytaniu jako warotsc value1 podajemy interesujcy nas temat.
+
+mapReduce.js tworzy dwa widoki bazy books.  Pierwszy widok by_titlelong sprawdza ile książek posiada dwa tytuły (title i title long), a ile posiada tylko jeden tytuł krótki.  Drugi widok by_numbers, sprawdza ilość wystąpięń każdej cyfry w numerach isbn.
+
+Folder wykresy:
+Skrypt create_data.rb generuje dwa pliki zawierające informacje uzyskane w widokach by_numbers i by_titlelong.
+index.html: wizualizacja przy pomocy protovis.
+
+Folder js:
+data_numbers.js - wygenorwany plik z danymi z widoku by_numbers.
+data_titlelong.js - wygenrowany plik z danymmi  z wikodu by_titlelong.
